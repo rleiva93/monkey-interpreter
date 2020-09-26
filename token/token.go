@@ -36,6 +36,10 @@ const (
 	LT = "<"
 	// GT greater than
 	GT = ">"
+	// EQ equals
+	EQ = "=="
+	// NOTEQ different
+	NOTEQ = "!="
 
 	// COMMA delimites two elements within the same expression
 	COMMA = ","
@@ -55,11 +59,26 @@ const (
 	FUNCTION = "FUNCTION"
 	// LET keyword
 	LET = "LET"
+	// TRUE keyword
+	TRUE = "TRUE"
+	// FALSE keyword
+	FALSE = "FALSE"
+	// IF keyword
+	IF = "IF"
+	// ELSE keyword
+	ELSE = "ELSE"
+	// RETURN keyword
+	RETURN = "RETURN"
 )
 
 var keywords = map[string]TokenType{
-	"fn":  FUNCTION,
-	"let": LET,
+	"fn":     FUNCTION,
+	"let":    LET,
+	"true":   TRUE,
+	"false":  FALSE,
+	"if":     IF,
+	"else":   ELSE,
+	"return": RETURN,
 }
 
 // LookupIdent checks for indentation chars
