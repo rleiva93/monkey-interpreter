@@ -1,11 +1,11 @@
 package token
 
 // Type that will be used by the Token structure
-type Type string
+type TokenType string
 
 // Token structure that will be used by the interpreter
 type Token struct {
-	Type    Type
+	Type    TokenType
 	Literal string
 }
 
@@ -45,13 +45,13 @@ const (
 	LET = "LET"
 )
 
-var keywords = map[string]Type{
+var keywords = map[string]TokenType{
 	"fn":  FUNCTION,
 	"let": LET,
 }
 
 // LookupIdent checks for indentation chars
-func LookupIdent(ident string) Type {
+func LookupIdent(ident string) TokenType {
 	if tok, ok := keywords[ident]; ok {
 		return tok
 	}
