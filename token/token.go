@@ -24,6 +24,18 @@ const (
 	ASSIGN = "="
 	// PLUS sign for addition and concatenation
 	PLUS = "+"
+	// MINUS sign for substraction
+	MINUS = "-"
+	// BANG sign for negation
+	BANG = "!"
+	// ASTERISK for multiplication
+	ASTERISK = "*"
+	// SLASH for division
+	SLASH = "/"
+	// LT less than
+	LT = "<"
+	// GT greater than
+	GT = ">"
 
 	// COMMA delimites two elements within the same expression
 	COMMA = ","
