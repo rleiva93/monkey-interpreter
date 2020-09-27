@@ -36,7 +36,7 @@ let foobar = 838383;
 	for i, tt := range tests {
 		stmt := program.Statements[i]
 
-		if !testLetStatements(t, stmt, tt.expectedIdentifier) {
+		if !testLetStatement(t, stmt, tt.expectedIdentifier) {
 			return
 		}
 	}
