@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"../ast"
 	"../lexer"
 	"../token"
 )
@@ -28,6 +29,7 @@ func (p *Parser) nextToken() {
 	p.nextToken = p.l.nextToken()
 }
 
+// ParseProgram function
 func (p *Parser) ParseProgram() *ast.Program {
 	return nil
 }

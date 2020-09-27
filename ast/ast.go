@@ -1,6 +1,6 @@
 package ast
 
-import "go/token"
+import "../token"
 
 // Node interface
 type Node interface {
@@ -27,7 +27,7 @@ type Program struct {
 // TokenLiteral function
 func (p *Program) TokenLiteral() string {
 	if len(p.Statements) > 0 {
-		return p.Statements[0].TokenLiteral
+		return p.Statements[0].TokenLiteral()
 	} else {
 		return ""
 	}
@@ -40,7 +40,9 @@ type LetStatement struct {
 	Value Expression
 }
 
-func (ls *LetStatement) statementNode()       {}
+func (ls *LetStatement) statementNode() {}
+
+// TokenLiteral function
 func (ls *LetStatement) TokenLiteral() string { return ls.Token.Literal }
 
 // Identifier struct
@@ -49,5 +51,7 @@ type Identifier struct {
 	Value string
 }
 
-func (i *Identifier) expressionNode()      {}
+func (i *Identifier) expressionNode() {}
+
+// TokenLiteral function
 func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
