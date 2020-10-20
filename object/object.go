@@ -16,6 +16,8 @@ const (
 	NULL_OBJ = "NULL"
 	// RETURN_VALUE_OBJ const
 	RETURN_VALUE_OBJ = "RETURN_VALUE"
+	// ERROR_OBJ const
+	ERROR_OBJ = "ERROR"
 )
 
 // Object interface
@@ -65,3 +67,14 @@ func (rv *ReturnValue) Type() Type { return RETURN_VALUE_OBJ }
 
 // Inspect func
 func (rv *ReturnValue) Inspect() string { return rv.Value.Inspect() }
+
+// Error struct
+type Error struct {
+	Message string
+}
+
+// Type func
+func (e *Error) Type() Type { return ERROR_OBJ }
+
+// Inspect func
+func (e *Error) Inspect() string { return "ERROR: " + e.Message }
