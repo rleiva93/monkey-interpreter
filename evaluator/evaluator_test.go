@@ -191,8 +191,8 @@ if (10 > 1) {
 // TestErrorHandling func
 func TestErrorHandling(t *testing.T) {
 	tests := []struct {
-		input          string
-		expectedMesage string
+		input           string
+		expectedMessage string
 	}{
 		{
 			"5 + true;",
@@ -211,10 +211,6 @@ func TestErrorHandling(t *testing.T) {
 			"unknown operator: BOOLEAN + BOOLEAN",
 		},
 		{
-			"true + false + true + false;",
-			"unknown operator: BOOLEAN + BOOLEAN",
-		},
-		{
 			"5; true + false; 5",
 			"unknown operator: BOOLEAN + BOOLEAN",
 		},
@@ -224,19 +220,15 @@ func TestErrorHandling(t *testing.T) {
 		},
 		{
 			`
-if (10 > 1) {
-  if (10 > 1) {
-    return true + false;
-  }
+		if (10 > 1) {
+		  if (10 > 1) {
+		    return true + false;
+		  }
 
-  return 1;
-}
-`,
+		  return 1;
+		}
+		`,
 			"unknown operator: BOOLEAN + BOOLEAN",
-		},
-		{
-			"foobar",
-			"identifier not found: foobar",
 		},
 	}
 
@@ -250,9 +242,9 @@ if (10 > 1) {
 			continue
 		}
 
-		if errObj.Message != tt.expectedMesage {
+		if errObj.Message != tt.expectedMessage {
 			t.Errorf("wrong error message. expected=%q, got=%q",
-				tt.expectedMesage, errObj.Message)
+				tt.expectedMessage, errObj.Message)
 		}
 	}
 }
