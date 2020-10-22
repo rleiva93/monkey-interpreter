@@ -26,20 +26,8 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 	case *ast.ExpressionStatement:
 		return Eval(node.Expression, env)
 
-	case *ast.PrefixExpression:
-		right := Eval(node.Right, env)
-		return evalPrefixExpression(node.Operator, right)
-
-	case *ast.InfixExpression:
-		left := Eval(node.Left, env)
-		right := Eval(node.Right, env)
-		return evalInfixExpression(node.Operator, left, right)
-
 	case *ast.BlockStatement:
 		return evalBlockStatement(node, env)
-
-	case *ast.IfExpression:
-		return evalIfExpression(node, env)
 
 	case *ast.ReturnStatement:
 		val := Eval(node.ReturnValue, env)
@@ -53,6 +41,18 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 		env.Set(node.Name.Value, val)
 
 	// Expressions
+	case *ast.PrefixExpression:
+		right := Eval(node.Right, env)
+		return evalPrefixExpression(node.Operator, right)
+
+	case *ast.InfixExpression:
+		left := Eval(node.Left, env)
+		right := Eval(node.Right, env)
+		return evalInfixExpression(node.Operator, left, right)
+
+	case *ast.IfExpression:
+		return evalIfExpression(node, env)
+
 	case *ast.IntegerLiteral:
 		return &object.Integer{Value: node.Value}
 
@@ -61,6 +61,11 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 
 	case *ast.Identifier:
 		return evalIdentifier(node, env)
+
+	case *ast.FunctionLiteral:
+		params := node.Parameters
+		body := node.Body
+		return &object.Function{Parameters: params, Env: env, Body: body}
 	}
 
 	return nil
