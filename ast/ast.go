@@ -349,3 +349,28 @@ func (al *ArrayLiteral) String() string {
 
 	return out.String()
 }
+
+// IndexExpression struct
+type IndexExpression struct {
+	Token token.Token // The [ token
+	Left  Expression
+	Index Expression
+}
+
+func (ie *IndexExpression) expressionNode() {}
+
+// TokenLiteral func
+func (ie *IndexExpression) TokenLiteral() string { return ie.Token.Literal }
+
+// String func
+func (ie *IndexExpression) String() string {
+	var out bytes.Buffer
+
+	out.WriteString("(")
+	out.WriteString(ie.Left.String())
+	out.WriteString("[")
+	out.WriteString(ie.Index.String())
+	out.WriteString("])")
+
+	return out.String()
+}
