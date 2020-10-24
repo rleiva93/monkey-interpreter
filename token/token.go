@@ -54,6 +54,10 @@ const (
 	LBRACE = "{"
 	// RBRACE closing curly brace char
 	RBRACE = "}"
+	// LBRACKET opening bracket char
+	LBRACKET = "["
+	// RBRACKET closing bracket char
+	RBRACKET = "]"
 
 	// FUNCTION keyword
 	FUNCTION = "FUNCTION"
