@@ -45,6 +45,8 @@ const (
 	COMMA = ","
 	// SEMICOLON represents the end of the file
 	SEMICOLON = ";"
+	// COLON represents assignation for hash literals
+	COLON = ":"
 
 	// LPAREN opening parenthesis char
 	LPAREN = "("
