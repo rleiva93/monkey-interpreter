@@ -33,6 +33,8 @@ const (
 	BUILTIN_OBJ = "BUILTIN"
 	// ARRAY_OBJ const
 	ARRAY_OBJ = "ARRAY"
+	// HASH_OBJ const
+	HASH_OBJ = "HASH"
 )
 
 // Object interface
@@ -202,4 +204,37 @@ func (s *String) HashKey() HashKey {
 	h.Write([]byte(s.Value))
 
 	return HashKey{Type: s.Type(), Value: h.Sum64()}
+}
+
+// HashPair struct
+type HashPair struct {
+	Key   Object
+	Value Object
+}
+
+// Hash struct
+type Hash struct {
+	Pairs map[HashKey]HashPair
+}
+
+// Inspect func
+func (h *Hash) Inspect() string {
+	var out bytes.Buffer
+
+	pairs := []string{}
+	for _, pair := range h.Pairs {
+		pairs = append(pairs, fmt.Sprintf("%s: %s",
+			pair.Key.Inspect(), pair.Value.Inspect()))
+	}
+
+	out.WriteString("{")
+	out.WriteString(strings.Join(pairs, ", "))
+	out.WriteString("}")
+
+	return out.String()
+}
+
+// Hashable interface
+type Hashable interface {
+	HashKey() HashKey
 }
