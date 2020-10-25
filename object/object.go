@@ -217,6 +217,9 @@ type Hash struct {
 	Pairs map[HashKey]HashPair
 }
 
+// Type func
+func (h *Hash) Type() Type { return HASH_OBJ }
+
 // Inspect func
 func (h *Hash) Inspect() string {
 	var out bytes.Buffer
